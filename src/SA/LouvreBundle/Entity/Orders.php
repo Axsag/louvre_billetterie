@@ -66,7 +66,7 @@ class Orders
 
     /*
      *
-     * @ORM\OneToMany(targetEntity="OC\PlatformBundle\Entity\Ticket", mappedBy="ticket")
+     * @ORM\OneToMany(targetEntity="SA\LouvreBundle\Entity\Tickets", mappedBy="ticket")
      * @ORM\JoinColumn(nullable=false)
      */
     private $tickets;

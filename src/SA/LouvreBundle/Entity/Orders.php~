@@ -3,6 +3,7 @@
 namespace SA\LouvreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Orders
@@ -65,10 +66,31 @@ class Orders
 
     /*
      *
-     * @ORM\OneToMany(targetEntity="OC\PlatformBundle\Entity\Ticket", mappedBy="ticket")
+     * @ORM\OneToMany(targetEntity="SA\LouvreBundle\Entity\Tickets", mappedBy="ticket")
      * @ORM\JoinColumn(nullable=false)
      */
     private $tickets;
+    
+    public function __construct()
+    {
+        $this->tickets = new ArrayCollection;
+        // ...
+    }
+    
+    public function addTickets(Tickets $ticket)
+    {
+        $this->tickets[] = $ticket;
+    }
+    
+    public function removeTickets(Tickets $ticket)
+    {
+        $this->tickets->removeElement($ticket);
+    }
+    
+    public function getTickets()
+    {
+        return $this->tickets;
+    }
     
     /**
      * Get id
@@ -224,4 +246,3 @@ class Orders
         return $this->email;
     }
 }
-
