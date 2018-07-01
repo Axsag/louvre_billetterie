@@ -1,20 +1,3 @@
 sa_louvre:
-    resource: "@SALouvreBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-sa_louvre_homepage:
-    path:     /
-    defaults: { _controller: SALouvreBundle:Default:index }
-
-sa_louvre_ticketAdd:
-    path:     /add
-    defaults: { _controller: SALouvreBundle:Tickets:add }
-
-sa_louvre_ordersView:
-    path:     /orders
-    defaults: { _controller: SALouvreBundle:Orders:add }
-
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+    resource: "@SALouvreBundle/Resources/config/routing.yml"
+    prefix: /

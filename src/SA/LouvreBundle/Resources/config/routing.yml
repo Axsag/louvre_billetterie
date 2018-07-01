@@ -1,11 +1,4 @@
 sa_louvre_homepage:
     path:     /
-    defaults: { _controller: ASLouvreBundle:Default:index }
+    defaults: { _controller: SALouvreBundle:Default:index }
 
-sa_louvre_ticketAdd:
-    path:     /add
-    defaults: { _controller: ASLouvreBundle:Tickets:add }
-
-sa_louvre_ordersView:
-    path:     /orders
-    defaults: { _controller: ASLouvreBundle:Orders:add }
