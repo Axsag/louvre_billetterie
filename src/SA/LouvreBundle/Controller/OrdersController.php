@@ -4,8 +4,10 @@ namespace SA\LouvreBundle\Controller;
 
 use SA\LouvreBundle\Form\TicketsType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+//use Symfony\component\routing\annotation\route
 
-class OrdersController extends Controller
+
+Class OrdersController extends Controller
 {
 
 
@@ -15,6 +17,6 @@ class OrdersController extends Controller
 		$orders = new \SA\LouvreBundle\Entity\Orders();
 		$form = $this->createForm(TicketsType::class, $orders);
 		$formView = $form->createView();
-		return $this->render('ordersView.html.twig', array('form'=>$formView));
+		return $this->render('..\Resources\views\Default\ordersView.html.twig', array('form'=>$formView));
     }
 }

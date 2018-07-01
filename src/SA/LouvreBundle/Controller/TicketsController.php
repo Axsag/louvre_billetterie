@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use SA\LouvreBundle\Entity\Tickets;
 use SA\LouvreBundle\Form\TicketsType;
 
-class TicketController extends Controller
+class TicketsController extends Controller
 {
 
 
@@ -16,6 +16,6 @@ class TicketController extends Controller
 		$ticket = new Tickets();
 		$form = $this->createForm(TicketsType::class, $ticket);
 		$formView = $form->createView();
-		return $this->render('SALouvreBundle:Default:ticketAdd.html.twig', array('form'=>$formView));
+		return $this->render('..\Resources\views\Default\ticketAdd.html.twig', array('form'=>$formView));
     }
 }
