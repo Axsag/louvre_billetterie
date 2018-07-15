@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class TicketsType extends AbstractType
 {
@@ -19,17 +21,16 @@ class TicketsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('idTicket', IntegerType::class)
+        ->add('idTicket', HiddenType::class)
         ->add('firstname', TextType::class)
         ->add('lastname', TextType::class)
         ->add('country', CountryType::class)
         ->add('birthday', BirthdayType::class)
-        ->add('reduction', MoneyType::class)
-        ->add('age', IntegerType::class)        
-        ->add('price', MoneyType::class, array(
-            'scale' => 2,
-            'currency' => 'EUR',
-        ));
+        ->add('reduction', CheckboxType::class)
+        ->add('age', HiddenType::class)        
+        ->add('price', HiddenType::class)
+            
+        ;
     }/**
      * {@inheritdoc}
      */

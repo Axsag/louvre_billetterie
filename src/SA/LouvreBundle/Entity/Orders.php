@@ -49,7 +49,14 @@ class Orders
      * @ORM\Column(name="price", type="float")
      */
     private $price;
-
+    
+    
+    /**
+     * @var int
+     * @ORM\Column(name="NbTickets", type="smallint")
+     */
+    private $NbTickets;
+    
     /**
      * @var string
      *
@@ -197,7 +204,27 @@ class Orders
     {
         return $this->price;
     }
-
+    
+    /**
+     * Set NbTickets
+     * @param integer $NbTickets
+     * @return Orders
+     */
+    public function setNbTickets($nbTickets)
+    {
+        $this->NbTickets = $NbTickets;
+        return $this;
+    }
+    
+    /**
+     * Get NbTickets
+     * @return int
+     */
+    public function getNbTickets()
+    {
+        return $this->NbTickets;
+    }
+    
     /**
      * Set codeReservation
      *
