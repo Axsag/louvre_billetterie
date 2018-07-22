@@ -29,7 +29,7 @@ class OrdersType extends AbstractType
                 'Journée' => 1,                
             ),
         ))
-        ->add('NbTickets',NumberType::class)
+        
         ->add('price', HiddenType::class)
         ->add('codeReservation', HiddenType::class)
         ->add('email', HiddenType::class)
@@ -37,20 +37,30 @@ class OrdersType extends AbstractType
             'entry_type' => TicketsType::class,
             'allow_add' => true,
             'allow_delete' => true,
-            'by_reference' => false,
+            //'by_reference' => false,
         ))
         ->add('Valider', SubmitType::class)
         ;
     }/**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    
+     /*public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'SA\LouvreBundle\Entity\Orders'
         ));
-    }
-
+    }*/
+    
+    public function configureOptions(OptionsResolver $resolver) { 
+        
+        $resolver->setDefaults(array( 
+            'data_class' => 'SA\LouvreBundle\Entity\Orders', 
+            "csrf_protection" => "false", 
+            "allow_extra_fields" => true 
+            
+        )); }
+    
     /**
      * {@inheritdoc}
      */

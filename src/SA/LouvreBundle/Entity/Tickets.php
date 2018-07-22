@@ -70,7 +70,38 @@ class Tickets
      */
     private $price;
 
-
+    /**
+     * @ORM\ManyToOne(targetEntity="SA\LouvreBundle\Entity\Orders", inversedBy="tickets", cascade="persist")
+     * @ORM\JoinColumn(name="order_id", referencedColumnName="id")
+     */
+    private $order;
+    
+    /**
+     * Set order
+     *
+     * @param \SA\LouvreBundle\Entity\Orders $order
+     *
+     * @return Tickets
+     */
+    public function setOrder(\SA\LouvreBundle\Entity\Orders $order = null)
+    {
+        $this->order = $order;
+        
+        return $this;
+    }
+    
+    /**
+     * Get order
+     *
+     * @return \SA\LouvreBundle\Entity\Orders
+     */
+    public function getOrder()
+    {
+        return $this->order;
+    }
+    
+    
+    
     /**
      * Get id
      *
@@ -80,7 +111,8 @@ class Tickets
     {
         return $this->id;
     }
-
+    
+    
     /**
      * Set firstname
      *

@@ -1,157 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>Billetterie Louvre</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
 
-    <title>{% block title %}Reservation{% endblock %}</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  
+  <!-- Favicon -->
+  <link href="img/favicon.ico" rel="icon">
 
-	
-    
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">  <!-- Google web font "Open Sans" -->
-    <link rel="stylesheet" href="{{ asset('bundles/salouvre/font-awesome-4.7.0/css/font-awesome.min.css') }}">                <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('bundles/salouvre/css/bootstrap.min.css') }}">                                      <!-- Bootstrap style -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/salouvre/css/datepicker.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/salouvre/slick/slick.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/salouvre/slick/slick-theme.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('bundles/salouvre/css/templatemo-style.css') }}">   
-	
-    
-      </head>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,700|Roboto:400,900" rel="stylesheet">
 
-      <body>
-        <div class="tm-main-content" id="top">
-            <div class="tm-top-bar-bg"></div>    
-            <div class="tm-top-bar" id="tm-top-bar">
-                <div class="container">
-                    <div class="row">
-                        <nav class="navbar navbar-expand-lg narbar-light">
-                            <a class="navbar-brand mr-auto" href="#">
-                                {% image '@SALouvreBundle/Resources/public/img/logo.png' %}
-                                    <img src="{{ asset_url }}" alt="Site logo" />
-                                {% endimage %}
-                                
-                                Journey
-                            </a>
-                            <button type="button" id="nav-toggle" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#mainNav" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div id="mainNav" class="collapse navbar-collapse tm-bg-white">
-                                <ul class="navbar-nav ml-auto">
-                                  <li class="nav-item">
-                                    <a class="nav-link active" href="#top">Home <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#tm-section-2">Top Destinations</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#tm-section-3">Recommended Places</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#tm-section-4">Contact Us</a>
-                                </li>
-                            </ul>
-                        </div>                            
-                    </nav>
-                </div> <!-- row -->
-            </div> <!-- container -->
-        </div> <!-- .tm-top-bar -->
+  <!-- Bootstrap CSS File -->
+  <link href="{{ asset('bundles/salouvre/bell/lib/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <!-- Libraries CSS Files -->
+  <link href="{{ asset('bundles/salouvre/bell/lib/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
 
-        <div class="tm-page-wrap mx-auto">
-            <section class="tm-banner">
-                <div class="tm-container-outer tm-banner-bg">
-                    <div class="container">
+  <!-- Main Stylesheet File -->
+  <link href="{{ asset('bundles/salouvre/bell/css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('bundles/salouvre/bell/css/stripe.css') }}" rel="stylesheet">
+  
+  <!-- =======================================================
+    Theme Name: Bell
+    Theme URL: https://bootstrapmade.com/bell-free-bootstrap-4-template/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+</head>
 
-                        <div class="row tm-banner-row tm-banner-row-header">
-                            <div class="col-xs-12">
-                                <div class="tm-banner-header">
-                                    <h1 class="text-uppercase tm-banner-title">Let's begin</h1>
-                                    {% image '@SALouvreBundle/Resources/public/img/dots-3.png' %}
-                                    <img src="{{ asset_url }}" alt="Dots" />
-                                    {% endimage %}                                    
-                                    <p class="tm-banner-subtitle">We assist you to choose the best.</p>
-                                    <a href="javascript:void(0)" class="tm-down-arrow-link"><i class="fa fa-2x fa-angle-down tm-down-arrow"></i></a>       
-                                </div>    
-                            </div>  <!-- col-xs-12 -->                      
-                        </div> <!-- row -->
-                        <div class="row tm-banner-row" id="tm-section-search">
+<body>
+  <!-- Page Content
+    ================================================== -->
+  <!-- Hero -->
 
-                                                         
-
-                        </div> <!-- row -->
-                        <div class="tm-banner-overlay"></div>
-                    </div>  <!-- .container -->                   
-                </div>     <!-- .tm-container-outer -->                 
-            </section>
-
-            <div>
-            {% block body %}{% endblock %}
-            </div>
-
-            
-
-            <footer class="tm-container-outer">
-                <p class="mb-0">Copyright © <span class="tm-current-year">2018</span> Axel Saglier 
-                    
-                . Designed by <a rel="nofollow" href="http://www.google.com/+templatemo" target="_parent">Template Mo</a></p>
-            </footer>
+  <section class="hero">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-12">
+          <a class="hero-brand" href="index.html" title="Home"><img alt="Bell Logo" src="https://i.imgur.com/822CuvC.png"></a>
         </div>
-    </div> <!-- .main-content -->
+      </div>
 
-    <!-- load JS files -->
-    <!--  <script src="{{ asset('bundles/salouvre/js/jquery-1.11.3.min.js') }}"></script>   -->          <!-- jQuery (https://jquery.com/download/) -->
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="{{ asset('bundles/salouvre/js/popper.min.js') }}"></script>                    <!-- https://popper.js.org/ -->       
-    <script src="{{ asset('bundles/salouvre/js/bootstrap.min.js') }}"></script>                 <!-- https://getbootstrap.com/ -->
-    <script src="{{ asset('bundles/salouvre/js/datepicker.min.js') }}"></script>                <!-- https://github.com/qodesmith/datepicker -->
-    <script src="{{ asset('bundles/salouvre/js/jquery.singlePageNav.min.js') }}"></script>      <!-- Single Page Nav (https://github.com/ChrisWojcik/single-page-nav) -->
-    <script src="{{ asset('bundles/salouvre/slick/slick.min.js') }}"></script>                  <!-- http://kenwheeler.github.io/slick/ -->
-    <script src="{{ asset('bundles/salouvre/js/jquery.scrollTo.min.js') }}"></script>
+      <div class="col-md-12">
+        <h1>
+            Billetterie en ligne
+          </h1>
 
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  	
-  	
-  	
-	
-  	<script>
-  		$( document ).ready(function() {
-  			var array = ["2018-05-01","2018-11-01","2018-12-25"]
-  			
-   			$( "#sa_louvrebundle_orders_visiteDate" ).datepicker({
+        <p class="tagline">
+          Faites vos réservations simplement et rapidement directement sur ce site pour éviter les files d'attentes.
+        </p>
+        <a class="btn btn-full" href="#contact">Réserver</a>
+      </div>
+    </div>
+
+  </section>
+  <!-- /Hero -->
+
+  <!-- Header -->
+  <header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <a href="index.html"><img src="https://i.imgur.com/822CuvC.png" alt="" title="" /></img></a>
+        <!-- Uncomment below if you prefer to use a text image -->
+        <!--<h1><a href="#hero">Bell</a></h1>-->
+      </div>
+
+      
+      <!-- #nav-menu-container -->
+
+      
+    </div>
+  </header>
+	<section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="section-title">Tarifs</h2>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+          <div class="info">
+            <div class="panel-body">
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Normal</th>
+                                <th>Enfant *</th>
+                                <th>Senior</th>
+                                <th>Reduit **</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Tarif Journée</th>
+                                <td>16€</td>
+                                <td>8€</td>
+                                <td>12€</td>
+                                <td>10€</td>
+                            </tr>
+                            <tr>
+                                <th>Tarif Demi-Journée</th>
+                                <td>8€</td>
+                                <td>4€</td>
+                                <td>6€</td>
+                                <td>5€</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>
+                        <strong>*</strong> Gratuit pour les enfants de moins de 4 ans.
+                    </p>
+                    <p>
+                        <strong>**</strong> Sous présentation d'un justificatif
+                    </p>
+                </div>
+			</div>
+        
+
+        
+
+      </div>
+    </div>
+  </section>
+            
+            
+  <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="section-title">Réserver un billet</h2>
+        </div>
+      </div>
+
+		      
+
+        <div class="col-lg-5 col-md-8">
+          <div class="form">
+            {% block body %}{% endblock %}                       
+          </div>
+          <div>
+          	{% block stripe %}{% endblock %} 
+          </div>
+        </div>
+
+      </div>
+    
+  </section>
+
+  <footer class="site-footer">
+    <div class="bottom">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-6 col-xs-12 text-lg-left text-center">
+            <p class="copyright-text">
+              © BELL Theme
+            </p>
+            <div class="credits">
+              <!--
+                All the links in the footer should remain intact.
+                You can delete the links only if you purchased the pro version.
+                Licensing information: https://bootstrapmade.com/license/
+                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Bell
+              -->
+             Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-xs-12 text-lg-right text-center">
+            <ul class="list-inline">
+              <li class="list-inline-item">
+                <a href="index.html">Home</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#about">About Us</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#features">Features</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#portfolio">Portfolio</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#team">Team</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a href="#contact">Contact</a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </footer>
+  <a class="scrolltop" href="#"><span class="fa fa-angle-up"></span></a>
+
+
+  <!-- Required JavaScript Libraries -->
+
+<!-- ==================================================== -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="{{ asset('bundles/salouvre/bell/lib/jquery/jquery-migrate.min.js') }}"></script>
+  <script src="{{ asset('bundles/salouvre/bell/lib/superfish/hoverIntent.js') }}"></script>
+  <script src="{{ asset('bundles/salouvre/bell/lib/superfish/superfish.min.js') }}"></script>
+  <script src="{{ asset('bundles/salouvre/bell/lib/tether/js/tether.min.js') }}"></script>
+  <script src="{{ asset('bundles/salouvre/bell/lib/stellar/stellar.min.js') }}"></script>
+  <script src="{{ asset('bundles/salouvre/bell/lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('bundles/salouvre/bell/lib/counterup/counterup.min.js') }}"></script>
+  <script src="{{ asset('bundles/salouvre/bell/lib/waypoints/waypoints.min.js') }}"></script>
+  <script src="{{ asset('bundles/salouvre/bell/lib/easing/easing.js') }}"></script>
+  <script src="{{ asset('bundles/salouvre/bell/lib/stickyjs/sticky.js') }}"></script>
+  <script src="{{ asset('bundles/salouvre/bell/lib/lockfixed/lockfixed.min.js') }}"></script>
+  
+
+  <!-- Template Specisifc Custom Javascript File -->
+  <script src="{{ asset('bundles/salouvre/js/custom.js') }}"></script>
+  <script src="{{ asset('bundles/salouvre/contactform/contactform.js') }}"></script>
+  
+  <!-- Scripts persos -->
+  
+  <!--  DatePicker  -->
+  <script>
+  	$( document ).ready(function() {
+  		var array = ["2018-05-01","2018-11-01","2018-12-25"]  			
+  			$( "#sa_louvrebundle_orders_visiteDate" ).datepicker({
   				minDate : 0,
   				beforeShowDay: function(date) {
   		     	    var day = date.getDay();  		     	    
 	  		        var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
 	  		        return [ array.indexOf(string) == -1 && (day != 2), '' ];
 	  		    }	
-  			});
-   		
-  		});
-  			
-    </script>
-    
-    
-    
-    
-    
-    
-    
+  			});   		
+  		});  			
+  </script>
 
+  <!--  Embeded Form  -->
 
-<div class="well">
-  {# ... #}
-  
-  {{ form_row(form.tickets) }}
-  <a href="#" id="add_ticket" class="btn btn-default">Ajouter un ticket</a>
-  
-  {# ... #}
-</div>
-
-
-<script type="text/javascript">
-  $(document).ready(function() {
+  <script type="text/javascript">
+  	$(document).ready(function() {
     // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
     var $container = $('div#sa_louvrebundle_orders_tickets');
 
@@ -160,7 +262,9 @@
 
     // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
     $('#sa_louvrebundle_orders_NbTickets').change(function(e) {
-        var totaltickets = $(this).val();      
+        var totaltickets = $(this).val();
+        $container.empty();
+        index = 0
         for (var iter = 0; iter < totaltickets; iter++) {
     	    addTicket($container);
         }
@@ -219,49 +323,7 @@
       });
     }
   });   
-</script>
- 
-      
-    
-    
-    
-    
-    
-    <script>
-        /* DOM is ready
-        ------------------------------------------------*/
-        $(function(){
-
-            // Change top navbar on scroll
-            $(window).on("scroll", function() {
-                if($(window).scrollTop() > 100) {
-                    $(".tm-top-bar").addClass("active");
-                } else {                    
-                 $(".tm-top-bar").removeClass("active");
-                }
-            });
-
-            
-
-          
-
-            // Update nav links on scroll
-            $('#tm-top-bar').singlePageNav({
-                currentClass:'active',
-                offset: 60
-            });
-
-            // Close navbar after clicked
-            $('.nav-link').click(function(){
-                $('#mainNav').removeClass('show');
-            });
-
-            
-
-                       
-        });
-
-    </script>             
-
+  </script>
+  
 </body>
 </html>

@@ -51,11 +51,7 @@ class Orders
     private $price;
     
     
-    /**
-     * @var int
-     * @ORM\Column(name="NbTickets", type="smallint")
-     */
-    private $NbTickets;
+    
     
     /**
      * @var string
@@ -71,10 +67,10 @@ class Orders
      */
     private $email;
 
-    /*
-     *
-     * @ORM\OneToMany(targetEntity="SA\LouvreBundle\Entity\Tickets", mappedBy="orders")
-     * @ORM\JoinColumn(nullable=false)
+    /**
+     * @ORM\OneToMany(targetEntity="SA\LouvreBundle\Entity\Tickets", mappedBy="Orders", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="Tickets")
+     * 
      */
     private $tickets;
     
@@ -205,25 +201,7 @@ class Orders
         return $this->price;
     }
     
-    /**
-     * Set NbTickets
-     * @param integer $NbTickets
-     * @return Orders
-     */
-    public function setNbTickets($nbTickets)
-    {
-        $this->NbTickets = $NbTickets;
-        return $this;
-    }
     
-    /**
-     * Get NbTickets
-     * @return int
-     */
-    public function getNbTickets()
-    {
-        return $this->NbTickets;
-    }
     
     /**
      * Set codeReservation
