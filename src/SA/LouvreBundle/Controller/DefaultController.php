@@ -26,11 +26,11 @@ class DefaultController extends Controller
             
                         
             
-           $entityManager = $this->getDoctrine()->getManager();
-           $entityManager->persist($orders);
-           $entityManager->flush();
+           //$entityManager = $this->getDoctrine()->getManager();
+           //$entityManager->persist($orders);
+           //$entityManager->flush();
             
-            return $this->render('SALouvreBundle:Default:recap.html.twig');
+            //return $this->render('SALouvreBundle:Default:recap.html.twig');
         }
         
         return $this->render('SALouvreBundle:Default:index.html.twig', array('form'=>$form->createView()
