@@ -16,14 +16,17 @@ class DefaultController extends Controller
     
     public function indexAction(Request $request)
     {
+        $serviceTarifs = $this->container->get('sa_louvre.calculatetarif');
         $orders = new \SA\LouvreBundle\Entity\Orders();
         $form = $this->createForm(OrdersType::class, $orders);        
-        //return $this->render('SALouvreBundle:Default:index.html.twig', array('form'=>$formView));
         
        
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+            $serviceTarifs = $this->container->get('sa_louvre.calculatetarif');
+            $serviceTarifs->calculateTarif($orders);
+            dump($orders);die;
                         
             
            //$entityManager = $this->getDoctrine()->getManager();
@@ -51,5 +54,5 @@ class DefaultController extends Controller
         //    'source' => $token,
         //]);
         
-    }
+    }    
 }

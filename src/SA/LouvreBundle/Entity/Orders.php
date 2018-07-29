@@ -4,6 +4,8 @@ namespace SA\LouvreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+//use Symfony\Component\Validator\Constraints as Assert;
+//use SA\LouvreBundle\Validators\SoldDaysValidator;
 
 /**
  * Orders
@@ -70,7 +72,7 @@ class Orders
     /**
      * @ORM\OneToMany(targetEntity="SA\LouvreBundle\Entity\Tickets", mappedBy="Orders", cascade={"persist", "remove"})
      * @ORM\JoinTable(name="Tickets")
-     * 
+     *  
      */
     private $tickets;
     
