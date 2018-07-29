@@ -2,33 +2,30 @@
 
 namespace SA\LouvreBundle\Validators;
 
+use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\ORM\EntityManager;
 
 
-class DayValidator extends ConstraintValidator
+class DayConstraintValidator extends ConstraintValidator
 {
     
-    /**
-     * @var EntityManager
-     */
-    protected $em;
     
-    public function __construct(EntityManager $entityManager)
+    public function __construct()
     {
-        $this->em = $entityManager;
     }
     
-    public function dayTickets($visiteDate)
+    public function validate($visiteDate, Constraint $constraint)
     {
-        
+        //dump($constraint->message);die;        
         $dateTimeVisite = new \DateTime($visiteDate);
         $day = $dateTimeVisite->format('%D');
         $numberDay = $dateTimeVisite->format('%z');
         if ($day = "TUE" || $numberDay = 121 || $numberDay = 305 || $numberDay = 359 )
         {
-            $this->context->buildViolation($constraint->message);
+            $this->context->addViolation($constraint->message);
         }
     }
+
 }

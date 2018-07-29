@@ -6,3 +6,6 @@ services:
     sa_louvre.calculatetarif:
         class: SA\LouvreBundle\Services\CalculateTarifs
 #       arguments: ["@doctrine.orm.entity_manager"]
+
+    sa_louvre.dayvalidator:
+        class: SA\LouvreBundle\Validators\DayConstraintValidator

@@ -22,12 +22,15 @@ class DefaultController extends Controller
         
        
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) 
+        if ($form->isSubmitted()) 
         {
-            $serviceTarifs = $this->container->get('sa_louvre.calculatetarif');
-            $serviceTarifs->calculateTarif($orders);
-            dump($orders);die;
-                        
+            if ($form->isValid())
+            {
+                $serviceTarifs = $this->container->get('sa_louvre.calculatetarif');
+                $serviceTarifs->calculateTarif($orders);
+            }
+            
+            
             
            //$entityManager = $this->getDoctrine()->getManager();
            //$entityManager->persist($orders);
@@ -35,6 +38,8 @@ class DefaultController extends Controller
             
             //return $this->render('SALouvreBundle:Default:recap.html.twig');
         }
+         
+        
         
         return $this->render('SALouvreBundle:Default:index.html.twig', array('form'=>$form->createView()
             
