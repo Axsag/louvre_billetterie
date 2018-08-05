@@ -12,6 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+
 
 class OrdersType extends AbstractType
 {
@@ -26,7 +28,7 @@ class OrdersType extends AbstractType
         ->add('typeOrder',ChoiceType::class, array(
             'choices' => array(
                 'Demi-journée' => 0,
-                'Journée' => 1,                
+                'Journée' => 1,
             ),
         ))
         
@@ -44,23 +46,26 @@ class OrdersType extends AbstractType
     }/**
      * {@inheritdoc}
      */
-    
-     /*public function configureOptions(OptionsResolver $resolver)
+    /*public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'SA\LouvreBundle\Entity\Orders'
         ));
     }*/
-    
-    public function configureOptions(OptionsResolver $resolver) { 
-        
-        $resolver->setDefaults(array( 
-            'data_class' => 'SA\LouvreBundle\Entity\Orders', 
-            "csrf_protection" => "false", 
-            "allow_extra_fields" => true 
+
+    public function configureOptions(OptionsResolver $resolver) 
+    {
+       
+     $resolver->setDefaults(array(
+        'data_class' => 'SA\LouvreBundle\Entity\Orders',
+        "csrf_protection" => "false",
+        "allow_extra_fields" => true
+           
+        )); 
+     
+    }
             
-        )); }
-    
+            
     /**
      * {@inheritdoc}
      */

@@ -20,9 +20,9 @@ class DayConstraintValidator extends ConstraintValidator
     {
         //dump($constraint->message);die;        
         $dateTimeVisite = new \DateTime($visiteDate);
-        $day = $dateTimeVisite->format('%D');
-        $numberDay = $dateTimeVisite->format('%z');
-        if ($day = "TUE" || $numberDay = 121 || $numberDay = 305 || $numberDay = 359 )
+        $day = $dateTimeVisite->format('D');
+        $numberDay = $dateTimeVisite->format('z');dump($day);
+        if ($day == "Tue" || $numberDay == 121 || $numberDay == 305 || $numberDay == 359 )
         {
             $this->context->addViolation($constraint->message);
         }

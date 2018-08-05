@@ -20,14 +20,17 @@ class DefaultController extends Controller
         $orders = new \SA\LouvreBundle\Entity\Orders();
         $form = $this->createForm(OrdersType::class, $orders);        
         
-       
+        
         $form->handleRequest($request);
         if ($form->isSubmitted()) 
         {
             if ($form->isValid())
-            {
+            { 
                 $serviceTarifs = $this->container->get('sa_louvre.calculatetarif');
-                $serviceTarifs->calculateTarif($orders);
+                $serviceTarifs->calculateTarif($orders);dump($orders);
+                $session = $request->getSession();
+                $session->set('orders', $orders);
+                return $this->render('SALouvreBundle:Default:recap.html.twig', array('orders'=>$orders, 'form'=>$form->createView()));
             }
             
             

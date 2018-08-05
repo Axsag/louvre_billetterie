@@ -9,3 +9,12 @@ services:
 
     sa_louvre.dayvalidator:
         class: SA\LouvreBundle\Validators\DayConstraintValidator
+    
+    sa_louvre.hourvalidator:
+        class: SA\LouvreBundle\Validators\HourConstraintValidator
+        
+    sa_louvre.solddaysvalidator:
+        class: SA\LouvreBundle\Validators\SoldDaysConstraintValidator
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - name: validator.constraint_validator

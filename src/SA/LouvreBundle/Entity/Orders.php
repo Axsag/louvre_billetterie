@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints;
 use SA\LouvreBundle\Validators\DayConstraint;
+use SA\LouvreBundle\Validators\HourConstraint;
+use SA\LouvreBundle\Validators\SoldDaysConstraint;
 
 /**
  * Orders
@@ -17,7 +19,7 @@ class Orders
 {
     /**
      * @var int
-     *
+     *(
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -34,8 +36,9 @@ class Orders
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="visiteDate", type="datetime")
+     * @ORM\Column(name="visiteDate", type="date")
      * @DayConstraint()
+     * @SoldDaysConstraint()
      *  
      */
     private $visiteDate;
@@ -44,6 +47,8 @@ class Orders
      * @var string
      *
      * @ORM\Column(name="typeOrder", type="string", length=100)
+     * @HourConstraint()
+     * 
      */
     private $typeOrder;
 
