@@ -45,7 +45,7 @@ class Tickets
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birthday", type="datetime")
+     * @ORM\Column(name="birthday", type="date")
      */
     private $birthday;
 

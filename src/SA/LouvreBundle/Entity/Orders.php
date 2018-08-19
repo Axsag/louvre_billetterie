@@ -38,7 +38,7 @@ class Orders
      *
      * @ORM\Column(name="visiteDate", type="date")
      * @DayConstraint()
-     * @SoldDaysConstraint()
+     * 
      *  
      */
     private $visiteDate;

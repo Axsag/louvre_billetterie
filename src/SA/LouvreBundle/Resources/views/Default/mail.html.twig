@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Votre réservation.</title>
+    </head>
+    <body>
+    Votre réservation a été confirmée.
+    
+    <p>Récapitulatif de votre commande</p>
+            <ul>
+                <li><strong>Code Réservertion :</strong> {{ orders.codeReservation }}</li>
+                <li><strong>Date de Réservation :</strong> {{ orders.visiteDate | date('d/m/Y') }}</li>
+                <li><strong>Type Réservation :</strong>
+                    {% if ordres.typeReservation == 0 %}
+                        Demi-Journée
+                    {% else %}
+                        Journée
+                    {% endif %}
+                </li>
+                <li>{% for list , ticket in app.session.get('orders').tickets %}
+			 	 Billet n°{{ list + 1 }}</br> 
+                 Réservant : {{ ticket.firstname }}  {{ ticket.lastname}}</br>
+                 Prix du Billet : {{ ticket.price }}€</br> 
+                 </br>
+                 </br> 
+			  {% endfor %}</li>
+                
+            </ul>          
+       
+    </body>
+</html>

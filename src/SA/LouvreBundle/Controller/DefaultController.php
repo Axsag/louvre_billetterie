@@ -16,6 +16,12 @@ class DefaultController extends Controller
     
     public function indexAction(Request $request)
     {
+        
+        
+        
+        
+        
+        
         $serviceTarifs = $this->container->get('sa_louvre.calculatetarif');
         $orders = new \SA\LouvreBundle\Entity\Orders();
         $form = $this->createForm(OrdersType::class, $orders);        
@@ -39,7 +45,7 @@ class DefaultController extends Controller
            //$entityManager->persist($orders);
            //$entityManager->flush();
             
-            //return $this->render('SALouvreBundle:Default:recap.html.twig');
+           //return $this->render('SALouvreBundle:Default:recap.html.twig');
         }
          
         
@@ -48,19 +54,63 @@ class DefaultController extends Controller
             
         ));
         
-        // Set your secret key: remember to change this to your live secret key in production
-        // See your keys here: https://dashboard.stripe.com/account/apikeys
-        //\Stripe\Stripe::setApiKey("sk_test_bd3aG1UHfzKVP5MLbGfbsL86");
         
-        // Token is created using Checkout or Elements!
-        // Get the payment token ID submitted by the form:
-        //$token = $_POST['stripeToken'];
-        //$charge = \Stripe\Charge::create([
-        //   'amount' => 2000,
-        //    'currency' => 'eur',
-        //    'description' => 'Example charge',
-        //    'source' => $token,
-        //]);
         
-    }    
+    } 
+    
+        
+    public function checkoutAction(Request $request)
+    {   
+        //Stripe Payment
+        $session = $request->getSession();
+        $prixTotal = $session->get('orders')->getPrice()*100;
+        \Stripe\Stripe::setApiKey("sk_test_bd3aG1UHfzKVP5MLbGfbsL86");
+        
+        // Get the credit card details submitted by the form
+        $token = $_POST['stripeToken'];
+        
+        // Create a charge: this will charge the user's card
+        try {
+            $charge = \Stripe\Charge::create(array(
+                "amount" => $prixTotal, // Amount in cents
+                "currency" => "eur",
+                "source" => $token,
+                "description" => "Paiement louvre"
+            ));
+        
+        //Code Reservation
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < 15; $i++) 
+        {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        $session->get('orders')->setCodeReservation($randomString);
+        $session->get('orders')->setCreatedDate('2018-05-05');
+        
+        //Save BDD
+        
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($session->get('orders'));
+        
+        $save = $em->flush();
+        //dump($session->get('orders'));die;
+        //email
+        if ($save == true)
+        {
+            $email = $session->get('orders')->getEmail();
+            $serviceMailer = $this->container->get('sa_louvre.sendMail');
+            $serviceMailer->sendMail($session->get('orders'));
+        }
+        
+            
+            dump($serviceMailer);die;
+            
+        } catch(\Stripe\Error\Card $e) {
+            
+            dump("Nope");die;
+            // The card has been declined
+        }
+    }
 }

@@ -2,19 +2,29 @@ services:
 #    sa_louvre.example:
 #        class: SA\LouvreBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
+#        public : true
 
     sa_louvre.calculatetarif:
         class: SA\LouvreBundle\Services\CalculateTarifs
+        public : true
 #       arguments: ["@doctrine.orm.entity_manager"]
 
     sa_louvre.dayvalidator:
         class: SA\LouvreBundle\Validators\DayConstraintValidator
+        public : true
     
     sa_louvre.hourvalidator:
         class: SA\LouvreBundle\Validators\HourConstraintValidator
+        public : true
         
     sa_louvre.solddaysvalidator:
         class: SA\LouvreBundle\Validators\SoldDaysConstraintValidator
+        public : true
         arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - name: validator.constraint_validator
+
+    sa_louvre.sendMail:
+        class: SA\LouvreBundle\Services\SendMail
+        public : true
+        arguments: ["@mailer"]

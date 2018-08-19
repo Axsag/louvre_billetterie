@@ -1,5 +1,9 @@
 sa_louvre_homepage:
     path:     /
     defaults: { _controller: SALouvreBundle:Default:index }
+    
+sa_louvre_checkout:
+    path:     /checkout
+    defaults: { _controller: SALouvreBundle:Default:checkout }
 
 

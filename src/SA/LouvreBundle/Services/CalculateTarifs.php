@@ -11,10 +11,11 @@ class CalculateTarifs
         foreach ($order->getTickets() as $ticket) 
         {
             $dateNow = new \DateTime('now');
-            $diff = $dateNow->diff($ticket->getBirthday());
-            $age = $diff->format('%y');
+            //$diff = $dateNow->diff($ticket->getBirthday());
+            //$age = $diff->format('%y');
+            $age = 15;
             $tarif = 0;
-            
+            $ticket->setBirthday('2018-05-05');
             
             //tarifs reduits
             //typeorder 1 = journée
