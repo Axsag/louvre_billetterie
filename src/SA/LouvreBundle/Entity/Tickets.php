@@ -50,9 +50,9 @@ class Tickets
     private $birthday;
 
     /**
-     * @var float
+     * @var boolean
      *
-     * @ORM\Column(name="reduction", type="float")
+     * @ORM\Column(name="reduction", type="boolean")
      */
     private $reduction;
 

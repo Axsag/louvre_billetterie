@@ -17,13 +17,15 @@ class CalculateTarifs
             $age = $diff->format('%y');
             //$age = 15;
             $tarif = 0;
+            dump($dateNow);
             //$ticket->setBirthday('2018-05-05');
             //$visite = str_replace('/','-',$visite);            
-            $dateNow = $dateNow->format('Y-m-d');            
-            $birthday = $birthday->format('Y-m-d');
+            //$dateNow = $dateNow->format('Y-m-d');            
+            //$birthday = $birthday->format('Y-m-d');
             $order->setVisiteDate($dateNow);
             $order->setCreatedDate($dateNow);
             $ticket->setBirthday($birthday);
+            $order->setEmail('axel.saglier@gmail.com');
             
             
             //tarifs reduits

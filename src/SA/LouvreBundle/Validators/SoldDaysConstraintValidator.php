@@ -30,7 +30,8 @@ class SoldDaysConstraintValidator extends ConstraintValidator
     
     public function validate($visiteDate, Constraint $constraint)
     {
-        $totalTickets = 0;        
+        $totalTickets = 0;    
+        dump($visiteDate);
         $dateTimeVisite      = new \DateTime($visiteDate);
         $totalTickets        = 0;
         $ordersOfCurrentDay  = $this->em->getRepository('SALouvreBundle:Orders')->findBy(array('createdDate'=> $dateTimeVisite ));dump($ordersOfCurrentDay);
@@ -44,10 +45,11 @@ class SoldDaysConstraintValidator extends ConstraintValidator
             }
         
         dump ($totalTickets,$visiteDate);
-        if ( $totalTickets > 5 ) {
+        if ( $totalTickets > 1 ) {
             
+            $this->context->addViolation($constraint->message);
         }
-        $this->context->addViolation($constraint->message);
+        
     }
     
 

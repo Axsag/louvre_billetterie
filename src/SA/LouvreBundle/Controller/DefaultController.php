@@ -95,7 +95,7 @@ class DefaultController extends Controller
         $em->persist($session->get('orders'));
         
         $save = $em->flush();
-        //dump($session->get('orders'));die;
+        dump($session->get('orders'));die;
         //email
         if ($save == true)
         {
@@ -105,7 +105,7 @@ class DefaultController extends Controller
         }
         
             
-            dump($serviceMailer);die;
+            //dump($serviceMailer);die;
             
         } catch(\Stripe\Error\Card $e) {
             
