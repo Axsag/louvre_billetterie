@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class TicketsType extends AbstractType
 {
@@ -25,7 +26,13 @@ class TicketsType extends AbstractType
         ->add('firstname', TextType::class)
         ->add('lastname', TextType::class)
         ->add('country', CountryType::class)
-        ->add('birthday', TextType::class)
+        ->add('birthday', DateType::class, array(
+            'label' => 'Date de naissance',
+            'years' => range(1900, date('Y')),
+            'attr'  => array(
+                'class' => 'form-group',
+            ),
+        ))
         ->add('reduction', CheckboxType::class, array('required' => false))
         ->add('age', HiddenType::class)        
         ->add('price', HiddenType::class)

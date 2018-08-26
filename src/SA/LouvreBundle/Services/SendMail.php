@@ -16,12 +16,12 @@ class SendMail
     
     public function sendMail($orders)
     {
-        
+        $email = $order->setEmail('axel.saglier@gmail.com');
         $message = \Swift_Message::newInstance()
         ->setSubject('Votre réservation : [' .$orders->getCodeReservation() . ']')
         ->setFrom('noreply@gmail.com')
-        //->setTo($orders->getEmail())
-        ->setTo('camillekanza@gmail.com')
+        ->setTo($orders->getEmail())
+        //->setTo('camillekanza@gmail.com')
         ->setContentType('text/html')
         /*->setBody($this->renderView('SALouvreBundle:Default:mail.html.twig', array(
             'orders'    =>$orders,

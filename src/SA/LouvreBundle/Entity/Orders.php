@@ -29,7 +29,7 @@ class Orders
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="createdDate", type="datetime")
+     * @ORM\Column(name="createdDate", type="date")
      */
     private $createdDate;
 
@@ -77,7 +77,7 @@ class Orders
     private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity="SA\LouvreBundle\Entity\Tickets", mappedBy="Orders", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="SA\LouvreBundle\Entity\Tickets", mappedBy="orders", cascade={"persist", "remove"})
      * @ORM\JoinTable(name="Tickets")
      *  
      */

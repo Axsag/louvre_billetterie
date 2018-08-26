@@ -87,7 +87,7 @@ class DefaultController extends Controller
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         $session->get('orders')->setCodeReservation($randomString);
-        $session->get('orders')->setCreatedDate('2018-05-05');
+        //$session->get('orders')->setCreatedDate('2018-05-05');
         
         //Save BDD
         
