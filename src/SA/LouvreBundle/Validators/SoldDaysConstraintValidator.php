@@ -31,21 +31,21 @@ class SoldDaysConstraintValidator extends ConstraintValidator
     public function validate($visiteDate, Constraint $constraint)
     {
         $totalTickets = 0;    
-        dump($visiteDate);
-        $dateTimeVisite      = new \DateTime($visiteDate);
+        //dump($visiteDate);
+        $dateTimeVisite      = new \DateTime($visiteDate);dump($dateTimeVisite);
         $totalTickets        = 0;
-        $ordersOfCurrentDay  = $this->em->getRepository('SALouvreBundle:Orders')->findBy(array('createdDate'=> $dateTimeVisite ));dump($ordersOfCurrentDay);
+        $ordersOfCurrentDay  = $this->em->getRepository('SALouvreBundle:Orders')->findBy(array('visiteDate'=> $dateTimeVisite ));dump($ordersOfCurrentDay);
         if ( !empty($ordersOfCurrentDay) )
             {
                 foreach ( $ordersOfCurrentDay as $row )
                 {
-                    $billets = $this->em->getRepository('SALouvreBundle:Tickets')->findBy( array('orders'=> $row->getId()) );
-                    $totalTickets += sizeof($tickets);
+                    $billets = $this->em->getRepository('SALouvreBundle:Tickets')->findBy( array('order'=> $row->getId()) );
+                    $totalTickets += sizeof($billets);
                 }
             }
         
-        dump ($totalTickets,$visiteDate);
-        if ( $totalTickets > 1 ) {
+        //dump ($totalTickets,$visiteDate);
+        if ( $totalTickets > 1000 ) {
             
             $this->context->addViolation($constraint->message);
         }

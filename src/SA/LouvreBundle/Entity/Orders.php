@@ -85,16 +85,19 @@ class Orders
     
     public function __construct()
     {
-        $this->tickets = new ArrayCollection;
-        // ...
+        $this->createdDate      = new \DateTime('now');
+        $this->codeReservation  = md5(uniqid().time());
+        $this->tickets          = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
-    public function addTickets(Tickets $ticket)
+    public function addTicket(Tickets $ticket)
     {
         $this->tickets[] = $ticket;
+        $ticket->setOrder($this);
+        return $this;
     }
     
-    public function removeTickets(Tickets $ticket)
+    public function removeTicket(Tickets $ticket)
     {
         $this->tickets->removeElement($ticket);
     }
@@ -259,4 +262,6 @@ class Orders
     {
         return $this->email;
     }
+    
+    
 }

@@ -10,22 +10,19 @@ class CalculateTarifs
         
         foreach ($order->getTickets() as $ticket) 
         {
-            $dateNow = new \DateTime('now');
+            $dateNow = new \DateTime('now');            
             $birthday = $ticket->getBirthday();
             $visite = $order->getVisiteDate();
+            $visiteDate = new \DateTime($visite);
             $diff = $dateNow->diff($birthday);
             $age = $diff->format('%y');
             //$age = 15;
             $tarif = 0;
-            dump($dateNow);
-            //$ticket->setBirthday('2018-05-05');
-            //$visite = str_replace('/','-',$visite);            
-            //$dateNow = $dateNow->format('Y-m-d');            
-            //$birthday = $birthday->format('Y-m-d');
-            $order->setVisiteDate($dateNow);
+            
+            $order->setVisiteDate($visiteDate);
             $order->setCreatedDate($dateNow);
             $ticket->setBirthday($birthday);
-            $order->setEmail('axel.saglier@gmail.com');
+            //$order->setEmail('axel.saglier@gmail.com');
             
             
             //tarifs reduits

@@ -1,0 +1,29 @@
+{% extends "SALouvreBundle::layout.html.twig" %}
+
+
+	{% block header %} 
+	<section class="hero">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-12">
+          <a class="hero-brand" href="index.html" title="Home"><img alt="Bell Logo" src="https://i.imgur.com/822CuvC.png"></a>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <h1>
+          </h1>
+
+        <p class="tagline">
+          Votre commande a bien été effectuée, un mail de confirmation viens d'être envoyé à l'adresse mail indiquée. Merci pour votre réservation !
+        </p>
+        <a class="btn btn-full" href="{{ path('sa_louvre_homepage')}}">Retour à la page d'acceuil</a>
+      </div>
+    </div>
+
+  </section>
+	
+  </header>
+      {% endblock %}
+      
+      

@@ -25,16 +25,7 @@ class HourConstraintValidator extends ConstraintValidator
     {
     }
     
-    /*public function hourTickets()
-    {
-        
-        $timeNow = new \DateTime('now');
-        $hour = $timeNow->format('%G');
-        if ($hour >= 14 && $ticketType->getTypeOrder == 1)
-        {
-            $this->context->addViolation($constraint->message);
-        }
-    }*/
+    
     
     public function validate($ticketType, Constraint $constraint)
     {

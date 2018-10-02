@@ -18,11 +18,6 @@ class DefaultController extends Controller
     {
         
         
-        
-        
-        
-        
-        $serviceTarifs = $this->container->get('sa_louvre.calculatetarif');
         $orders = new \SA\LouvreBundle\Entity\Orders();
         $form = $this->createForm(OrdersType::class, $orders);        
         
@@ -33,84 +28,93 @@ class DefaultController extends Controller
             if ($form->isValid())
             { 
                 $serviceTarifs = $this->container->get('sa_louvre.calculatetarif');
-                $serviceTarifs->calculateTarif($orders);dump($orders);
+                $serviceTarifs->calculateTarif($orders);//dump($orders);die;
                 $session = $request->getSession();
                 $session->set('orders', $orders);
-                return $this->render('SALouvreBundle:Default:recap.html.twig', array('orders'=>$orders, 'form'=>$form->createView()));
+                return $this->redirectToRoute('sa_louvre_recap');
             }
-            
-            
-            
-           //$entityManager = $this->getDoctrine()->getManager();
-           //$entityManager->persist($orders);
-           //$entityManager->flush();
-            
-           //return $this->render('SALouvreBundle:Default:recap.html.twig');
         }
          
-        
-        
-        return $this->render('SALouvreBundle:Default:index.html.twig', array('form'=>$form->createView()
-            
-        ));
-        
-        
-        
+        return $this->render('SALouvreBundle:Default:index.html.twig', array('form'=>$form->createView()));   
     } 
     
-        
-    public function checkoutAction(Request $request)
-    {   
-        //Stripe Payment
+    
+    /**
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function recapAction(Request $request)
+    {
+        // On récupère notre objet commande précédement sauvegardé en session, pour afficher le récap de notre formulaire
         $session = $request->getSession();
-        $prixTotal = $session->get('orders')->getPrice()*100;
-        \Stripe\Stripe::setApiKey("sk_test_bd3aG1UHfzKVP5MLbGfbsL86");
+        $orders = $session->get("orders");
+        return $this->render('SALouvreBundle:Default:recap.html.twig', array('orders' => $orders));
+    }
+    
+    /**
+     *
+     * @param Request $request
+     */ 
+    public function checkoutAction(Request $request)
+    {
+        
+        // On récupère les données de la commande sauvegardées en session pour mettre à jour certains champs
+        $session = $request->getSession();
+        $orders = $session->get("orders");
+        $tickets = $session->get("tickets");
+        
+        // On récupère l'adresse email précédement saisie
+        $email = $request->get('sa_louvrebundle_orders_email');
+        $orders->setEmail($email);
+        
+        //Stripe Payment
+        $session   = $request->getSession();
         
         // Get the credit card details submitted by the form
-        $token = $_POST['stripeToken'];
-        
+        $token = $request->get('stripeToken');
+                
         // Create a charge: this will charge the user's card
         try {
-            $charge = \Stripe\Charge::create(array(
-                "amount" => $prixTotal, // Amount in cents
-                "currency" => "eur",
-                "source" => $token,
-                "description" => "Paiement louvre"
-            ));
-        
-        //Code Reservation
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < 15; $i++) 
-        {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        $session->get('orders')->setCodeReservation($randomString);
-        //$session->get('orders')->setCreatedDate('2018-05-05');
-        
-        //Save BDD
-        
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($session->get('orders'));
-        
-        $save = $em->flush();
-        dump($session->get('orders'));die;
-        //email
-        if ($save == true)
-        {
-            $email = $session->get('orders')->getEmail();
-            $serviceMailer = $this->container->get('sa_louvre.sendMail');
-            $serviceMailer->sendMail($session->get('orders'));
-        }
-        
+            $serviceStripe = $this->container->get('sa_louvre.stripe');
+            $stripecheckout = $serviceStripe->stripeCheckout($token, $session->get('orders')->getPrice());
             
-            //dump($serviceMailer);die;
+            // Vérification si le paiement OK
+            if ( $stripecheckout instanceof \Stripe\Charge && $stripecheckout->paid == true ) {
+                
+                //Sauvegarde en BDD
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($orders);
+                $em->flush();
+                
+                // Si sauvegardé en BDD OK, envoi d'un mail de récap
+                if ($orders->getId() == true)
+                {
+                    $email = $orders->getEmail();
+                    $serviceMailer = $this->container->get('sa_louvre.sendMail');
+                    $serviceMailer->sendMail($orders, $tickets);
+                    
+                    // ........
+                    
+                    // ...... Ne pas oublier de détruire la session à la fin
+                    $request->getSession()->invalidate(1);
+
+                    return $this->redirectToRoute('sa_louvre_success');
+                }
+                
+            }
+            else {
+                return $this->render('SALouvreBundle:Default:error.html.twig');
+            }
             
         } catch(\Stripe\Error\Card $e) {
-            
             dump("Nope");die;
-            // The card has been declined
         }
+        //return $this->render('SALouvreBundle:Default:index.html.twig');
     }
+    public function successAction(Request $request)
+    {
+        return $this->render('SALouvreBundle:Default:success.html.twig');
+    }
+    
 }

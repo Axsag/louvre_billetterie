@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>Votre réservation.</title>
-    </head>
-    <body>
+{% extends "SALouvreBundle::layout.html.twig" %}
+{% block body %}
+    
     Votre réservation a été confirmée.
     
     <p>Récapitulatif de votre commande</p>
@@ -12,7 +8,7 @@
                 <li><strong>Code Réservertion :</strong> {{ orders.codeReservation }}</li>
                 <li><strong>Date de Réservation :</strong> {{ orders.visiteDate | date('d/m/Y') }}</li>
                 <li><strong>Type Réservation :</strong>
-                    {% if ordres.typeReservation == 0 %}
+                    {% if orders.typeOrder == 0 %}
                         Demi-Journée
                     {% else %}
                         Journée
@@ -28,5 +24,5 @@
                 
             </ul>          
        
-    </body>
-</html>
+    
+{% endblock %}

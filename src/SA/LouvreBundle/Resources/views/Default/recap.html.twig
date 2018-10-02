@@ -1,9 +1,39 @@
 {% extends "SALouvreBundle::layout.html.twig" %}
 
 
+	{% block header %} 
+	<header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <a href="index.html"><img src="https://i.imgur.com/822CuvC.png" alt="" title="" /></img></a>
+        <!-- Uncomment below if you prefer to use a text image -->
+        <!--<h1><a href="#hero">Bell</a></h1>-->
+      </div>
+
+      
+      <!-- #nav-menu-container -->
+
+      
+    </div>
+  </header>
+      {% endblock %}
+
     {% block body %}
+    <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="section-title">Récapitulatif de la réservation</h2>
+        </div>
+      </div>
+
+		      
+
+        <div class="col-lg-5 col-md-8">
+          <div class="form">
         Réservation faite pour le :
-        {# orders.visiteDate #} </br>
+        {{ orders.visiteDate |date('d-m-Y') }} </br>
         Pour un montant total de :
         {{ orders.price }} € </br></br>
 
@@ -14,9 +44,9 @@
                  </br>
                  </br> 
 			  {% endfor %}
-
-			
-    	<form action="app_dev.php/checkout" method="post" id="payment-form">
+		
+        	
+    	<form action="{{ path('sa_louvre_checkout')}}" method="post" id="payment-form">
     		
     		<div class="form-group">
     	        <label class="col-sm-6 control-label control-label required" for="sa_louvrebundle_orders_email">Votre adresse mail</label>

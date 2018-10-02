@@ -1,7 +1,116 @@
 {% extends "SALouvreBundle::layout.html.twig" %}
+	{% block header %}
+		<section class="hero">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-12">
+          <a class="hero-brand" href="index.html" title="Home"><img alt="Bell Logo" src="https://i.imgur.com/822CuvC.png"></a>
+        </div>
+      </div>
 
+      <div class="col-md-12">
+        <h1>
+            Billetterie en ligne
+          </h1>
+
+        <p class="tagline">
+          Faites vos réservations simplement et rapidement directement sur ce site pour éviter les files d'attentes.
+        </p>
+        <a class="btn btn-full" href="#contact">Réserver</a>
+      </div>
+    </div>
+
+  </section>
+  <!-- /Hero -->
+
+  <!-- Header -->
+  <header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <a href="index.html"><img src="https://i.imgur.com/822CuvC.png" alt="" title="" /></img></a>
+        <!-- Uncomment below if you prefer to use a text image -->
+        <!--<h1><a href="#hero">Bell</a></h1>-->
+      </div>
+
+      
+      <!-- #nav-menu-container -->
+
+      
+    </div>
+  </header>
+	
+	{% endblock %}                       
+	
 
     {% block body %}
+    <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="section-title">Tarifs</h2>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+          <div class="info">
+            <div class="panel-body">
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Normal</th>
+                                <th>Enfant *</th>
+                                <th>Senior</th>
+                                <th>Reduit **</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Tarif Journée</th>
+                                <td>16€</td>
+                                <td>8€</td>
+                                <td>12€</td>
+                                <td>10€</td>
+                            </tr>
+                            <tr>
+                                <th>Tarif Demi-Journée</th>
+                                <td>8€</td>
+                                <td>4€</td>
+                                <td>6€</td>
+                                <td>5€</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>
+                        <strong>*</strong> Gratuit pour les enfants de moins de 4 ans.
+                    </p>
+                    <p>
+                        <strong>**</strong> Sous présentation d'un justificatif
+                    </p>
+                </div>
+			</div>
+        
+
+        
+
+      </div>
+    </div>
+  </section>
+            
+            
+  <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h2 class="section-title">Réserver un billet</h2>
+        </div>
+      </div>
+
+		      
+
+        <div class="col-lg-5 col-md-8">
+          <div class="form">
         {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
         
         	{# Les erreurs générales du formulaire. #}
