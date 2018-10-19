@@ -31,10 +31,9 @@ class SoldDaysConstraintValidator extends ConstraintValidator
     public function validate($visiteDate, Constraint $constraint)
     {
         $totalTickets = 0;    
-        //dump($visiteDate);
-        $dateTimeVisite      = new \DateTime($visiteDate);dump($dateTimeVisite);
+        $dateTimeVisite      = new \DateTime($visiteDate);
         $totalTickets        = 0;
-        $ordersOfCurrentDay  = $this->em->getRepository('SALouvreBundle:Orders')->findBy(array('visiteDate'=> $dateTimeVisite ));dump($ordersOfCurrentDay);
+        $ordersOfCurrentDay  = $this->em->getRepository('SALouvreBundle:Orders')->findBy(array('visiteDate'=> $dateTimeVisite ));
         if ( !empty($ordersOfCurrentDay) )
             {
                 foreach ( $ordersOfCurrentDay as $row )
@@ -44,7 +43,6 @@ class SoldDaysConstraintValidator extends ConstraintValidator
                 }
             }
         
-        //dump ($totalTickets,$visiteDate);
         if ( $totalTickets > 1000 ) {
             
             $this->context->addViolation($constraint->message);

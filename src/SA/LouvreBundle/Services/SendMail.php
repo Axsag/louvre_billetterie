@@ -26,15 +26,11 @@ class SendMail
         ->setFrom('noreply@gmail.com')
         ->setTo($orders->getEmail())        
         ->setContentType('text/html')
-        /*->setBody($this->renderView('@SALouvreBundle:Default:mail.html.twig', array(
-            'orders'    =>$orders,
-            'tickets'   =>$tickets
-        )))*/
+        
         ->setBody($contenu)
         ;
         // Envoi du mail
         $success = $this->mailer->send($message);
-        //dump($message, $success);
     
     }
 }

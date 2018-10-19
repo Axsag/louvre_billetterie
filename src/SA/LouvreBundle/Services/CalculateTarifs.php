@@ -16,13 +16,11 @@ class CalculateTarifs
             $visiteDate = new \DateTime($visite);
             $diff = $dateNow->diff($birthday);
             $age = $diff->format('%y');
-            //$age = 15;
             $tarif = 0;
             
             $order->setVisiteDate($visiteDate);
             $order->setCreatedDate($dateNow);
             $ticket->setBirthday($birthday);
-            //$order->setEmail('axel.saglier@gmail.com');
             
             
             //tarifs reduits
@@ -92,7 +90,6 @@ class CalculateTarifs
                     $tarif = 6;
                 }
             }
-            //dump($tarif);
             $ticket->setAge($age);
             $ticket->setPrice($tarif);
             $tarifTot += $tarif;

@@ -18,7 +18,6 @@ class DayConstraintValidator extends ConstraintValidator
     
     public function validate($visiteDate, Constraint $constraint)
     {
-        //dump($constraint->message);die;        
         $dateTimeVisite = new \DateTime($visiteDate);
         $day = $dateTimeVisite->format('D');
         $numberDay = $dateTimeVisite->format('d-m');

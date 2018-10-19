@@ -28,7 +28,7 @@ class DefaultController extends Controller
             if ($form->isValid())
             { 
                 $serviceTarifs = $this->container->get('sa_louvre.calculatetarif');
-                $serviceTarifs->calculateTarif($orders);//dump($orders);die;
+                $serviceTarifs->calculateTarif($orders);
                 $session = $request->getSession();
                 $session->set('orders', $orders);
                 return $this->redirectToRoute('sa_louvre_recap');
@@ -46,6 +46,10 @@ class DefaultController extends Controller
      */
     public function recapAction(Request $request)
     {
+        $session = $request->getSession();
+        if ($session->get('orders') == null) {
+            return $this->redirectToRoute('sa_louvre_homepage');
+        }
         // On récupère notre objet commande précédement sauvegardé en session, pour afficher le récap de notre formulaire
         $session = $request->getSession();
         $orders = $session->get("orders");
@@ -58,7 +62,10 @@ class DefaultController extends Controller
      */ 
     public function checkoutAction(Request $request)
     {
-        
+        $session = $request->getSession();
+        if ($session->get('orders') == null) {
+            return $this->redirectToRoute('sa_louvre_homepage');
+        }
         // On récupère les données de la commande sauvegardées en session pour mettre à jour certains champs
         $session = $request->getSession();
         $orders = $session->get("orders");
@@ -108,9 +115,9 @@ class DefaultController extends Controller
             }
             
         } catch(\Stripe\Error\Card $e) {
-            dump("Nope");die;
+            dump("Erreur Token Stripe");die;
         }
-        //return $this->render('SALouvreBundle:Default:index.html.twig');
+        
     }
     public function successAction(Request $request)
     {
